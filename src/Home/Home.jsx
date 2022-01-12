@@ -1,5 +1,5 @@
 import { Typography, Container, CssBaseline, Grid, Button, Card, CardMedia, CardContent, CardActions, makeStyles, Dialog, DialogTitle, DialogContentText, DialogActions, DialogContent, Tooltip } from "@material-ui/core";
-import { Email, Facebook, Instagram, LinkedIn, YouTube } from "@material-ui/icons";
+import { Email, Facebook, GitHub, Instagram, LinkedIn, Visibility, YouTube } from "@material-ui/icons";
 import { useEffect } from "react";
 import { Fragment, useState } from "react";
 import { Redirect } from "react-router-dom";
@@ -56,13 +56,15 @@ const Home = () => {
 
     const classes = useStyles();
 
+    const {user} = useAuth();
+
     const [open, setOpen] = useState(false);
     const [login, setLogin] = useState(false);
 
     
 
     const cards = [
-        {img: 'sistemaEscolar.png', link: 'https://school.grupoprox.com', title: 'Sistema Escolar', description: 'Um sistema de gestão escolar voltado para cursos livres e escolas de idioma.'}
+        {img: 'sistemaEscolar.png', link: 'https://school.grupoprox.com', link2: 'https://github.com/ProXDigital/sistema-escolar-react', title: 'Sistema Escolar', description: 'Um sistema de gestão escolar voltado para cursos livres e escolas de idioma.'}
     ]
 
     const handleContactDialog = () => {
@@ -91,7 +93,7 @@ const Home = () => {
             {login ? (
                 <LoginDialog onClose={() => setLogin(false)} />
             ) : null}
-            <LoginDialog onClose={() => setLogin(false)} />
+            
             <Dialog
                 open={open}
                 onClose={() => setOpen(false)}
@@ -174,8 +176,8 @@ const Home = () => {
                         </Button>
                         </Grid>
                         <Grid item>
-                        <Button variant="outlined" color="primary" onClick={handleLoginDialog}>
-                            Login
+                        <Button variant="outlined" color="primary" onClick={!user ? handleLoginDialog : () => window.open('/dashboard', '_self')}>
+                            {!user ? 'Login' : 'Dashboard'}
                         </Button>
                         </Grid>
                     </Grid>
@@ -186,8 +188,8 @@ const Home = () => {
                 </div>
                 <Container className={classes.cardGrid} maxWidth="md">
                 {/* End hero unit */}
-                <Typography variant="h4" color="textPrimary" gutterBottom>
-                    Meus projetos
+                <Typography variant="h4" color="textSecondary" gutterBottom>
+                    Projetos
                 </Typography>
                 <Grid container spacing={4}>
                 
@@ -210,12 +212,12 @@ const Home = () => {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" color="primary" href={card.link} target={'_blank'} rel="noreferrer">
+                            <Button size="small" color="primary" href={card.link} target={'_blank'} rel="noreferrer" startIcon={<Visibility />}>
                             Ver projeto
                             </Button>
-                            {/* <Button size="small" color="primary">
-                            Edit
-                            </Button> */}
+                            <Button size="small" color="primary" startIcon={<GitHub />} href={card.link2} target={'_blank'} rel="noreferrer">
+                            GitHub
+                            </Button>
                         </CardActions>
                         </Card>
                     </Grid>

@@ -8,8 +8,9 @@ import {
 import FormDialog from "../shared/FormDialog";
 
 import { useAuth } from "../hooks/useAuth";
-import SimpleSnackbar from "../shared/Snackbar";
+import { useSnackbar } from 'notistack'
 import { useEffect } from "react";
+
 
 const LoginDialog = (props) => {
     const {
@@ -18,6 +19,8 @@ const LoginDialog = (props) => {
         onClose,
         openChangePasswordDialog,
     } = props;
+
+    const {enqueueSnackbar, closeSnackbar} = useSnackbar();
     const [ isLoading, setIsLoading ] = useState(false); 
     const [ open, setOpen ] = useState(true);
     const [ status, setStatus ] = useState(null)
@@ -37,14 +40,16 @@ const LoginDialog = (props) => {
     const handlePasswordForgot = (async () => {
         if (loginEmail.current.value !== "") {
             try {
+                setIsLoading(true)
                 await passwordRecover(loginEmail.current.value);
-                setShowSnack(true);
-            
+                enqueueSnackbar('Um email foi enviado para você para redefinição da senha.', {title: 'Sucesso', variant: 'info', key:"0", action: <Button onClick={() => closeSnackbar('0')} color="inherit">Fechar</Button>})
+                
                 
             } catch (error) {
                 console.log(error)
                 setStatus(error.code)
             }
+            setIsLoading(false)
         } else {
             setStatus('auth/user-not-found')
         }
@@ -80,17 +85,8 @@ const LoginDialog = (props) => {
 
     return (
         <Fragment>
-            {showSnack ? (
-                <SimpleSnackbar 
-                    duration={10000} 
-                    message={'Um e-mail foi enviado para você com um link para recuperação.'} 
-                    closeButtonLabel={'Ok'}
-                    isOpen={true}
-                    onClose={setShowSnack(false)}
-                />
-            ) : ""
             
-            }
+            
             
             <FormDialog
                 open={open}
@@ -100,7 +96,7 @@ const LoginDialog = (props) => {
                     e.preventDefault();
                     login();
                 }}
-                headline="Entrar no Sistema"
+                headline="Entrar"
                 content={
                     <Fragment>
                         <Button 
@@ -199,7 +195,7 @@ const LoginDialog = (props) => {
                                 }
                             }}
                             >
-                            Esqueçeu sua senha?
+                            Não lembro a senha
                         </Typography>
                     </Fragment>
                 }

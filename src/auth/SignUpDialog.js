@@ -29,7 +29,7 @@ const SignUpDialog = (props) => {
     const [ status, setStatus ] = useState(null)
     const [ showSnack, setShowSnack ] = useState(false);
 
-    const { passwordRecover, createUserWithEmailAndPassword, signOut } = useAuth();
+    const { passwordRecover, createUserWithEmailAndPassword, signOut, loginWithGoogle } = useAuth();
 
     const loginName = useRef();
     const loginEmail = useRef();
@@ -120,6 +120,16 @@ const SignUpDialog = (props) => {
                 headline="Criar conta"
                 content={
                     <Fragment>
+                        <Button 
+                            variant="outlined"
+                            fullWidth
+                            onClick={loginWithGoogle}
+                            startIcon={<img src="google-dark.png" alt="Google Icon" />}
+
+                        >
+                            
+                            Entrar com o Google
+                        </Button>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -239,7 +249,7 @@ const SignUpDialog = (props) => {
                         Criar conta
                         {isLoading && <CircularProgress />}
                         </Button>
-                        <Typography
+                        {/* <Typography
                             align="center"
                             style={{
                                 cursor: 'pointer',
@@ -258,8 +268,8 @@ const SignUpDialog = (props) => {
                                 }
                             }}
                             >
-                            Esqueçeu sua senha?
-                        </Typography>
+                            Não lembro a senha
+                        </Typography> */}
                     </Fragment>
                 }
             />
