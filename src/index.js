@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import './services/firebase';
-import {SnackbarProvider} from 'notistack'
+import registerServiceWorker from "./registerServiceWorker";
+import {SnackbarProvider} from 'notistack';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,3 +15,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+registerServiceWorker();

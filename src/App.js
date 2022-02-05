@@ -10,6 +10,7 @@ import { AuthContextProvider } from './contexts/AuthContext';
 import { useAuth } from './hooks/useAuth';
 import Dashboard from './Dashboard/Dashboard';
 import Navbar from './navbar/Navbar';
+import Video from './Video/Video';
 
 const theme = createTheme({
   palette: {
@@ -40,6 +41,9 @@ function App() {
                 </Route>
                 <Route path="/dashboard">
                   <Dashboard />
+                </Route>
+                <Route path="/video">
+                  <Video />
                 </Route>
               </Switch>
             </ThemeProvider>
