@@ -64,7 +64,20 @@ const Home = () => {
     
 
     const cards = [
-        {img: 'sistemaEscolar.png', link: 'https://school.grupoprox.com', link2: 'https://github.com/ProXDigital/sistema-escolar-react', title: 'Sistema Escolar', description: 'Um sistema de gestão escolar voltado para cursos livres e escolas de idioma.'}
+        {
+            img: 'sistemaEscolar.png', 
+            link: 'https://school.grupoprox.com', 
+            link2: 'https://github.com/ProXDigital/sistema-escolar-react', 
+            title: 'Sistema Escolar', 
+            description: 'Um sistema de gestão escolar voltado para cursos livres e escolas de idioma.',
+        },
+        {
+            img: '', 
+            link: 'https://chat.grupoprox.com', 
+            link2: 'https://github.com/ProXDigital/chat', 
+            title: 'Chat App', 
+            description: 'Chat realtime onde clientes podem conversar com agentes online.',
+        },
     ]
 
     const handleContactDialog = () => {
