@@ -116,6 +116,13 @@ const Home = () => {
                     <DialogContentText>Você pode ver meus trabalhos e falar comigo nesses canais.</DialogContentText>
                     <div className={classes.imgContainer}>
                         <Typography variant="button">
+                            <Tooltip title="Github">
+                                <a href="https://github.com/resendegu" target={'_blank'} rel="noreferrer">
+                                    <GitHub />
+                                </a>
+                            </Tooltip>
+                        </Typography>
+                        <Typography variant="button">
                             <Tooltip title="Instagram">
                                 <a href="https://instagram.com/resendegu" target={'_blank'} rel="noreferrer">
                                     <Instagram />
