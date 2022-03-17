@@ -72,7 +72,7 @@ const Home = () => {
             description: 'Um sistema de gestão escolar voltado para cursos livres e escolas de idioma.',
         },
         {
-            img: '', 
+            img: 'chatapp.png', 
             link: 'https://chat.grupoprox.com', 
             link2: 'https://github.com/ProXDigital/chat', 
             title: 'Chat App', 
