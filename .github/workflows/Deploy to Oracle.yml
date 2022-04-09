@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Checkout v2
         uses: actions/checkout@v2
-        
+
       - name: Run build
         run: npm ci && npm run build
 
@@ -33,3 +33,4 @@ jobs:
           server: cloud.resende.app
           username: resende_deploy
           password: ${{ secrets.ftp_password }}
+          local-dir: ./build
