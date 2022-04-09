@@ -22,11 +22,13 @@ jobs:
         REACT_APP_MEASUREMENT_ID: ${{secrets.REACT_APP_MEASUREMENT_ID}}
     steps:
       - name: Checkout v2
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
+        
       - name: Run build
-      - run: npm ci && npm run build
+        run: npm ci && npm run build
+
       - name: Upload files with FTP
-      - uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: cloud.resende.app
           username: resende_deploy
