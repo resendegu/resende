@@ -11,7 +11,6 @@ import { useAuth } from "../hooks/useAuth";
 import { useSnackbar } from 'notistack'
 import { useEffect } from "react";
 
-
 const LoginDialog = (props) => {
     const {
         history,
