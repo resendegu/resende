@@ -48,7 +48,8 @@ const Dashboard = () => {
     const classes = useStyles();
 
     const cards = [
-        {img: 'meet.png', link: 'https://meet.resende.app', title: 'Video-chamadas', description: 'Crie vídeo-chamdas facilmente. Powered by Jitsi.'}
+        {img: 'meet.png', link: 'https://meet.resende.app', title: 'Video-chamadas', description: 'Crie vídeo-chamdas facilmente. Powered by Jitsi.'},
+        {img: 'link.png', link: 'https://link.resende.app', title: 'Encurtador de link', description: 'Encurte suas URLs. Powered by YOURLS.'},
     ]
 
     return (
