@@ -22,7 +22,7 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const analytics = firebase.analytics(app)
 
-const auth = firebase.auth();
+const auth = firebase.auth(app);
 const providers = firebase.auth
 const database = firebase.database();
 const functions = firebase.functions();

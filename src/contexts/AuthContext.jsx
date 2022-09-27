@@ -57,6 +57,7 @@ export function AuthContextProvider(props) {
   }
 
   const loginWithGoogle = async () => {
+    
     const provider = new providers.GoogleAuthProvider();
 
     const result = await auth.signInWithPopup(provider)
