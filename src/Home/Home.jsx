@@ -96,7 +96,8 @@ const Home = () => {
             <Link onClick={() => setOpen(true)}>Gustavo Resende</Link> 
             {' '}
             {new Date().getFullYear()}
-            {'.'}
+            {'.'} {' '}
+            <a rel="me" href="https://mastodon.social/@resende">Mastodon</a>
           </Typography>
         );
       }
