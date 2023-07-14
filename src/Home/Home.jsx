@@ -187,7 +187,7 @@ const Home = () => {
                         Bem-vindo!
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                    Eu sou o Resende, e você está no meu portfólio. Ainda é bem simples, mas tem alguns serviços gratuitos que você pode usar!
+                    Eu sou o Resende, por aqui você encontra alguns projetos em programação. Também atuo em projetos de automação com Ansible e possuo experiencias como SysAdmin e Infraestrutura. 
                     </Typography>
                     <div className={classes.heroButtons}>
                     <Grid container spacing={2} justifyContent="center">
