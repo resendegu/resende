@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 import LoginDialog from "../auth/LoginDialog";
 import { useAuth } from "../hooks/useAuth";
+import { database } from "../services/firebase";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,13 +58,12 @@ const Home = () => {
     const classes = useStyles();
 
     const {user} = useAuth();
+    const projectsRef = database.ref().child('resende_public').child('projects')
 
+    const [projectsChange, setProjectsChange] = useState(0)
     const [open, setOpen] = useState(false);
     const [login, setLogin] = useState(false);
-
-    
-
-    const cards = [
+    const [cards, setCards] = useState([
         {
             img: 'sistemaEscolar.png', 
             link: 'https://school.grupoprox.com', 
@@ -78,7 +78,24 @@ const Home = () => {
             title: 'Chat App', 
             description: 'Chat realtime onde clientes podem conversar com agentes online.',
         },
-    ]
+    ])
+
+    useEffect(() => {
+        projectsRef.on("value", (e) => {
+            console.log(e.val())
+            let cardsArray = []
+            let cardsOnline = e.val()
+            for (const key in cardsOnline) {
+                if (Object.hasOwnProperty.call(cardsOnline, key)) {
+                    const card = cardsOnline[key];
+                    cardsArray.push(card)
+                }
+            }
+            console.log(cardsArray)
+            setCards(cardsArray)
+            
+        })
+    }, [])
 
     const handleContactDialog = () => {
         setOpen(true)
@@ -187,7 +204,7 @@ const Home = () => {
                         Bem-vindo!
                     </Typography>
                     <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                    Eu sou o Resende, por aqui você encontra alguns projetos em programação. Também atuo em projetos de automação com Ansible e possuo experiencias como SysAdmin e Infraestrutura. 
+                    Eu sou o Resende, por aqui você encontra alguns projetos em programação. Também atuo em automações com Ansible, Cloud e Infraestrutura. 
                     </Typography>
                     <div className={classes.heroButtons}>
                     <Grid container spacing={2} justifyContent="center">
@@ -233,12 +250,17 @@ const Home = () => {
                             </Typography>
                         </CardContent>
                         <CardActions>
+                            {card.hasOwnProperty('link') ? (
                             <Button size="small" color="primary" href={card.link} target={'_blank'} rel="noreferrer" startIcon={<Visibility />}>
-                            Ver projeto
+                                Ver projeto
                             </Button>
-                            <Button size="small" color="primary" startIcon={<GitHub />} href={card.link2} target={'_blank'} rel="noreferrer">
-                            GitHub
-                            </Button>
+                            ) : null}
+                            {card.hasOwnProperty('link2') ? (
+                                <Button size="small" color="primary" startIcon={<GitHub />} href={card.link2} target={'_blank'} rel="noreferrer">
+                                GitHub
+                                </Button>
+                            ) : null
+                            }
                         </CardActions>
                         </Card>
                     </Grid>
